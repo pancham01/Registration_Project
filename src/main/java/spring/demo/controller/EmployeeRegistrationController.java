@@ -27,12 +27,6 @@ public class EmployeeRegistrationController {
 		return "index2";
 	}
 
-//	@RequestMapping("/registration-form")
-//	public String read() {
-//		System.out.println("SURE<<<<<<<<<<>>>>>>>>>>>");
-//		return "registration";
-//	}
-
 	@RequestMapping("/searchEmp")
 	public String searchEmployee(@RequestParam int id, Model model) {
 		Employee emp = employeeService.getEmployeeById(id);

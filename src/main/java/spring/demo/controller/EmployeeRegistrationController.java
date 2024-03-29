@@ -1,8 +1,7 @@
 package spring.demo.controller;
 
-import java.util.LinkedList;
-import java.util.List;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -10,12 +9,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import spring.demo.model.Employee;
+import spring.demo.service.EmployeeService;
 
 @Controller
-public class WelcomeController {
-	List<Employee> list = new LinkedList<>();
+public class EmployeeRegistrationController {
 
-//	@ResponseBody
+	private EmployeeService employeeService;
+
+	@Autowired(required = true)
+	@Qualifier(value = "employeeService")
+	public void setEmployeeService(EmployeeService employeeService) {
+		this.employeeService = employeeService;
+	}
+
 	@RequestMapping("/")
 	public String display() {
 		return "index2";
@@ -28,20 +34,21 @@ public class WelcomeController {
 //	}
 
 	@RequestMapping("/searchEmp")
-	public String searchEmployee(@RequestParam String name, Model model) {
-		for (Employee employee : list) {
-			if (employee.getName().equals(name)) {
-				model.addAttribute("emp",employee);
-				return "done";
-			}
+	public String searchEmployee(@RequestParam int id, Model model) {
+		Employee emp = employeeService.getEmployeeById(id);
+		if (emp != null) {
+			model.addAttribute("emp", emp);
+			return "done";
 		}
-		model.addAttribute("name",name);
+
+		model.addAttribute("id", id);
 		return "error";
 
 	}
+
 	@RequestMapping("/find")
 	public String searchMethod() {
-		
+
 		return "search";
 
 	}
@@ -54,22 +61,10 @@ public class WelcomeController {
 
 	@RequestMapping("/registerEmp")
 	public String registered(@ModelAttribute Employee emp) {
-		list.add(emp);
+		employeeService.addEmployee(emp);
 		System.out.println(emp);
 		System.out.println();
 		return "registered";
 	}
-
-//	@RequestMapping("/registerEmp")
-//	public String showFeatures(@RequestParam String name, @RequestParam String gender, @RequestParam int age,
-//			@RequestParam int salary) {
-	
-	
-//		System.out.println(name);
-//		System.out.println(gender);
-//		System.out.println(age);
-//		System.out.println(salary);
-//		return "done";
-//	}
 
 }

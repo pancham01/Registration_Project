@@ -8,8 +8,8 @@
 </head>
 <body>
 	<form action="searchEmp" method="post">
-		<label for="name">Name:</label> <input type="text" id="name"
-			name="name" required><br> <input type="submit"
+		<label for="name">ID:</label> <input type="number" id="id"
+			name="id" required><br> <input type="submit"
 			value="Submit">
 	</form>
 </body>

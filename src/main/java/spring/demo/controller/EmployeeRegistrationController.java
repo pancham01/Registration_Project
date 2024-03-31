@@ -1,5 +1,7 @@
 package spring.demo.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -44,6 +46,13 @@ public class EmployeeRegistrationController {
 	public String searchMethod() {
 
 		return "search";
+
+	}
+	@RequestMapping("/list")
+	public String listEmps(Model model) {
+		List<Employee> list=employeeService.listEmployees();
+		model.addAttribute("list",list);
+		return "list";
 
 	}
 

@@ -34,8 +34,8 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
 	@Override
 	public List<Employee> listEmployees() {
-		// TODO Auto-generated method stub
-		return null;
+		Session session = sessionFactory.openSession();
+        return session.createQuery("from Employee").list();
 	}
 
 	@Override

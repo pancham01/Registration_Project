@@ -72,18 +72,19 @@ public class EmployeeRegistrationController {
 		return "registered";
 	}
 	
-	
-	  @RequestMapping("/editEmployee/{id}/edit")
-	    public String editEmployeeForm(@PathVariable int id, Model model) {
+//	editEmployee/${employee.id}
+	  @RequestMapping("/editEmployee/{id}")
+	    public String editEmployeeForm(@PathVariable("id") int id, Model model) {
 		  System.out.println("EmployeeRegistrationController.editEmployeeForm()");
 	        Employee employee = employeeService.getEmployeeById(id);
 	        model.addAttribute("employee", employee);
 	        return "editEmployee";
 	    }
 
-	    @RequestMapping("/employees/{id}/edit")
-	    public String editEmployeeSubmit(@PathVariable int id, Employee employee) {
-	        employee.setId(id); // Ensure the ID is set before saving
+	    @RequestMapping("/editEmployee/{id}/edit")
+	    public String editEmployeeSubmit(@PathVariable("id") int id, Employee employee) {
+	       System.out.println("EmployeeRegistrationController.editEmployeeSubmit()");
+	    	employee.setId(id); // Ensure the ID is set before saving
 	        employeeService.updateEmployee(employee);
 	        return "redirect:/list"; // Redirect to the list of employees after editing
 	    }

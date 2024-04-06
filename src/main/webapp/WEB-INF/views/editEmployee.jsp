@@ -5,7 +5,7 @@
 </head>
 <body>
     <h2>Edit Employee</h2>
-    <form action="/employees/${employee.id}/edit" method="post">
+    <form action="${employee.id}/edit" method="post">
         <!-- Input fields for editing employee details -->
         Name: <input type="text" name="name" value="${employee.name}"><br>
         Gender: <input type="text" name="gender" value="${employee.gender}"><br>

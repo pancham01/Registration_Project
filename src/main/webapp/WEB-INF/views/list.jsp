@@ -35,8 +35,8 @@ table, th, td {
 					<td>${employee.gender}</td>
 					<td>${employee.age}</td>
 					<td>${employee.salary}</td>
-					<td><a href="/editEmployee?id=${employee.id}/edit">Edit</a> | <a
-						href="/deleteEmployee?id=${employee.id}"
+					<td><a href="editEmployee/${employee.id}">Edit</a> | <a
+						href="deleteEmployee/${employee.id}"
 						onclick="return confirm('Are you sure you want to delete this employee?')">Delete</a>
 					</td>
 				</tr>

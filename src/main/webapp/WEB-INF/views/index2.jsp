@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Employee Registration</title>
 </head>
 <body>
 <h1>WELCOME TO THE SPRING MVC</h1>

@@ -28,8 +28,12 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
 	@Override
 	public void updateEmployee(Employee r) {
+		System.out.println("EmployeeDAOImpl.updateEmployee()");
 		 Session session = sessionFactory.openSession();
 	        session.update(r);
+			session.beginTransaction().commit();
+
+	        
 	}
 
 	@Override

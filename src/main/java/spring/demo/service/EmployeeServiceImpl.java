@@ -25,7 +25,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	@Transactional
 	public void updateEmployee(Employee r) {
-		// TODO Auto-generated method stub
+		this.employeeDAO.updateEmployee(r);
 		
 	}
 

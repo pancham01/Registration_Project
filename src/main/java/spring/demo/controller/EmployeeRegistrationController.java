@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import spring.demo.model.Employee;
@@ -69,5 +71,21 @@ public class EmployeeRegistrationController {
 		System.out.println();
 		return "registered";
 	}
+	
+	
+	  @RequestMapping("/editEmployee/{id}/edit")
+	    public String editEmployeeForm(@PathVariable int id, Model model) {
+		  System.out.println("EmployeeRegistrationController.editEmployeeForm()");
+	        Employee employee = employeeService.getEmployeeById(id);
+	        model.addAttribute("employee", employee);
+	        return "editEmployee";
+	    }
+
+	    @RequestMapping("/employees/{id}/edit")
+	    public String editEmployeeSubmit(@PathVariable int id, Employee employee) {
+	        employee.setId(id); // Ensure the ID is set before saving
+	        employeeService.updateEmployee(employee);
+	        return "redirect:/list"; // Redirect to the list of employees after editing
+	    }
 
 }

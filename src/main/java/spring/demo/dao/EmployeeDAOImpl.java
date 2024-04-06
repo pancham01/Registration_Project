@@ -28,8 +28,8 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
 	@Override
 	public void updateEmployee(Employee r) {
-		// TODO Auto-generated method stub
-
+		 Session session = sessionFactory.openSession();
+	        session.update(r);
 	}
 
 	@Override

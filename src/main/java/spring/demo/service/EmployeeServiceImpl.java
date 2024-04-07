@@ -44,8 +44,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	@Transactional
 	public void removeEmployee(int id) {
-		// TODO Auto-generated method stub
-		
+		employeeDAO.removeEmployee(id);
 	}
 
 }

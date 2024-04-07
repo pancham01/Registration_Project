@@ -50,8 +50,13 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
 	@Override
 	public void removeEmployee(int id) {
-		// TODO Auto-generated method stub
-
+		Session session =sessionFactory.openSession();
+		Employee employee = (Employee) session.load(Employee.class, id);
+        if (employee != null) {
+            session.delete(employee);
+            session.beginTransaction().commit();
+        }
+        System.out.println(employee+" Deleted Successfull");
 	}
 
 }
